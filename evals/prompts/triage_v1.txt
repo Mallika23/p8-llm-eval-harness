@@ -1,0 +1,12 @@
+Classify this support ticket.
+
+Reply with ONLY a JSON object with these keys:
+  category      one of: billing, technical, account, other
+  priority      one of: low, medium, high
+  needs_human   true or false
+  summary       one sentence, using only facts stated in the ticket
+
+Do not write anything before or after the JSON.
+
+Ticket:
+{ticket}

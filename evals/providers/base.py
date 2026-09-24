@@ -3,6 +3,9 @@
 from abc import ABC, abstractmethod
 from dataclasses import dataclass
 
+#ABC - abstract base class, a class that can't be instantiated on its own, but can be subclassed. 
+#abc is molude in python standard library, ABC - class to inherit from, abstactmethod - decorator to mark methods that must be implemented in subclasses
+
 
 @dataclass(frozen=True)
 class Completion:
@@ -27,7 +30,7 @@ class Provider(ABC):
     name: str="base"
     #self is eqv to this name, but this is a more convenient way to access it.
     # * in signature, everything must be passed by name, eg. case_id="case01" just "case01" doesn't work.
-
+    # complete() means get me the model's answer to this prompt like get_response() in openai, or generate() in cohere, or predict() in huggingface.
     @abstractmethod
     def complete(self,prompt:str,*, case_id:str| None=None)-> Completion:
         """Given a prompt and some parameters, return a model completion."""

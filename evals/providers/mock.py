@@ -14,7 +14,7 @@ class MockProvider(Provider):
 
     def __init__(self, fixture_dir: Path | str = "fixtures/responses") -> None:
         self.fixture_dir = Path(fixture_dir)
-
+    #will get TypeError if abstract method is not implemented
     def complete(self, prompt:str, *, case_id:str | None = None) -> Completion:
         if case_id is None:
             raise ValueError("case_id must be provided for mock provider.")
