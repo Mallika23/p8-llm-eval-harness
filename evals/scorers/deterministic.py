@@ -3,11 +3,10 @@
 import json
 import re
 from dataclasses import dataclass
-from unicodedata import category
 
 #sets
 REQUIRED_KEYS = {"category", "priority", "needs_human", "summary"}
-ALLOWED_CATEGORIES = {"billing", "accounts", "technical", "other"}
+ALLOWED_CATEGORIES = {"billing", "account", "technical", "other"}
 ALLOWED_PRIORITIES = {"high", "medium", "low"}
 
 REFUSAL_PATTERNS = [

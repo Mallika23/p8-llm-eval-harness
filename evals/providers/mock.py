@@ -31,6 +31,6 @@ class MockProvider(Provider):
             text=data["text"],
             model_name=data.get("model","mock"),
             latency_ms=data.get("latency_ms",0.0),
-            token_in=data.get("token_in"),
-            token_out=data.get("token_out")
+            token_in=data.get("tokens_in"),
+            token_out=data.get("tokens_out")
         )
