@@ -1,0 +1,9 @@
+{
+  "case_id": "case_04",
+  "model": "gemini-3.5-flash-lite",
+  "latency_ms": 8067.734300158918,
+  "tokens_in": 214,
+  "tokens_out": 72,
+  "recorded_at": "2026-11-17T15:35:06.166714+00:00",
+  "text": "{\n  \"category\": \"billing\",\n  \"priority\": \"high\",\n  \"needs_human\": true,\n  \"summary\": \"The customer was charged for a full year despite cancelling their subscription on the 12th of last month and has written three times requesting a refund.\",\n  \"sentiment\": \"angry\"\n}"
+}

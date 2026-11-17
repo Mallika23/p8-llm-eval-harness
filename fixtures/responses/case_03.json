@@ -1,0 +1,9 @@
+{
+  "case_id": "case_03",
+  "model": "gemini-3.5-flash-lite",
+  "latency_ms": 8442.571299849078,
+  "tokens_in": 204,
+  "tokens_out": 77,
+  "recorded_at": "2026-11-17T15:34:54.094506+00:00",
+  "text": "{\n  \"category\": \"technical\",\n  \"priority\": \"high\",\n  \"needs_human\": true,\n  \"summary\": \"The app crashes with a java.lang.OutOfMemoryError every time the user tries to upload a PDF larger than about 10 MB on Android 14 using app version 4.2.1.\"\n}"
+}

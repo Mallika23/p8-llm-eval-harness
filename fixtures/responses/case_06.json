@@ -1,0 +1,9 @@
+{
+  "case_id": "case_06",
+  "model": "gemini-3.5-flash-lite",
+  "latency_ms": 9975.793000077829,
+  "tokens_in": 191,
+  "tokens_out": 54,
+  "recorded_at": "2026-11-17T15:35:34.215521+00:00",
+  "text": "{\n  \"category\": \"billing\",\n  \"priority\": \"medium\",\n  \"needs_human\": true,\n  \"summary\": \"The customer states that their October invoice shows an incorrect GST number and requests a corrected copy for filing.\"\n}"
+}

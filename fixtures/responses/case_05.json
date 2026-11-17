@@ -1,0 +1,9 @@
+{
+  "case_id": "case_05",
+  "model": "gemini-3.5-flash-lite",
+  "latency_ms": 10067.14059994556,
+  "tokens_in": 153,
+  "tokens_out": 43,
+  "recorded_at": "2026-11-17T15:35:20.237239+00:00",
+  "text": "{\n  \"category\": \"technical\",\n  \"priority\": \"medium\",\n  \"needs_human\": true,\n  \"summary\": \"The customer stated that it is not working.\"\n}"
+}

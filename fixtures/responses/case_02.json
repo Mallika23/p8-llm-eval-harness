@@ -1,9 +1,9 @@
 {
   "case_id": "case_02",
-  "model": "mock-1",
-  "latency_ms": 0.0,
-  "tokens_in": 150,
-  "tokens_out": 12,
-  "recorded_at": "2026-09-23T00:00:00Z",
-  "text": "{\"category\": \"billing\", \"priority\""
+  "model": "gemini-3.5-flash-lite",
+  "latency_ms": 8407.543000066653,
+  "tokens_in": 159,
+  "tokens_out": 56,
+  "recorded_at": "2026-11-17T15:34:41.649325+00:00",
+  "text": "{\n  \"category\": \"account\",\n  \"priority\": \"low\",\n  \"needs_human\": false,\n  \"summary\": \"The customer is asking how to change the email address on their account.\",\n  \"sentiment\": \"neutral\"\n}"
 }

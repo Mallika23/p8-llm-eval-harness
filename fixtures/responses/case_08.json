@@ -1,0 +1,9 @@
+{
+  "case_id": "case_08",
+  "model": "gemini-3.5-flash-lite",
+  "latency_ms": 16712.44790009223,
+  "tokens_in": 178,
+  "tokens_out": 70,
+  "recorded_at": "2026-11-17T15:36:46.038056+00:00",
+  "text": "{\n  \"category\": \"other\",\n  \"priority\": \"low\",\n  \"needs_human\": false,\n  \"summary\": \"The customer is praising the new export feature for saving them about an hour this week and states there are no issues or need for a reply.\",\n  \"sentiment\": \"positive\"\n}"
+}

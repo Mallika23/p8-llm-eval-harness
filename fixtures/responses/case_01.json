@@ -1,9 +1,9 @@
 {
   "case_id": "case_01",
-  "model": "mock-1",
-  "latency_ms": 0.0,
-  "tokens_in": 180,
-  "tokens_out": 42,
-  "recorded_at": "2026-09-23T00:00:00Z",
-  "text": "{\"category\": \"billing\", \"priority\": \"high\", \"needs_human\": true, \"summary\": \"Customer was charged twice for the September invoice and has had no reply from support.\"}"
+  "model": "gemini-3.5-flash-lite",
+  "latency_ms": 8768.606799887493,
+  "tokens_in": 211,
+  "tokens_out": 97,
+  "recorded_at": "2026-11-17T15:34:29.238185+00:00",
+  "text": "{\n  \"category\": \"billing\",\n  \"priority\": \"high\",\n  \"needs_human\": true,\n  \"summary\": \"The customer was charged twice for their September invoice with two debits of Rs 4,999 on the 3rd under Order ID 88231, has emailed support twice without a reply, and needs a refund before their next billing date.\",\n  \"sentiment\": \"frustrated\"\n}"
 }

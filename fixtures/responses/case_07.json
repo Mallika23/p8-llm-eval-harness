@@ -1,0 +1,9 @@
+{
+  "case_id": "case_07",
+  "model": "gemini-3.5-flash-lite",
+  "latency_ms": 21514.754199888557,
+  "tokens_in": 209,
+  "tokens_out": 69,
+  "recorded_at": "2026-11-17T15:35:59.732927+00:00",
+  "text": "{\n  \"category\": \"billing\",\n  \"priority\": \"high\",\n  \"needs_human\": true,\n  \"summary\": \"The customer was billed for five seats despite having only three users on the account, and the user list page displays the same person twice.\",\n  \"sentiment\": \"neutral\"\n}"
+}
