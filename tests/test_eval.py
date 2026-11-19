@@ -12,15 +12,18 @@ import pytest
 from evals.dataset import LoadDataset
 from evals.report import summarise, write_report
 from evals.scorers import SCORERS
+from evals.scorers.judge import SummaryJudge
 
 # Minimum average score (0.0-1.0) per scorer across the whole dataset.
 # Choosing these is a risk decision: format checks must be perfect,
-# category accuracy is allowed one miss in 8 (7/8 = 0.875).
+# category accuracy is allowed one miss in 8 (7/8 = 0.875),
+# judge faithfulness must average about 4/5 or better ((4-1)/4 = 0.75).
 THRESHOLDS = {
     "json_schema_valid": 1.0,
     "allowed_values": 1.0,
     "no_refusal": 1.0,
     "exact_field_match": 0.85,
+    "summary_faithfulness": 0.75,
 }
 
 # runs once, when pytest loads this file
@@ -30,17 +33,20 @@ CASES = dataset.load_cases()
 
 # runs once per case; ids make each one show as test_cases[case_01] etc.
 @pytest.mark.parametrize("case", CASES, ids=lambda c: c["id"])
-def test_cases(case, provider, run_results):
+def test_cases(case, provider, judge_provider, run_results):
     # 1. fill the prompt with this case's ticket
     prompt = dataset.build_prompt(case)
 
     # 2. get the model's answer (mock replays a fixture; --record calls Gemini and saves it)
     completion = provider.complete(prompt, case_id=case["id"])
 
+    # the judge needs a provider from a fixture, so it joins the lookup here
+    scorers = {**SCORERS, SummaryJudge.name: SummaryJudge(judge_provider)}
+
     # 3. run each scorer listed for this case and keep every result
     results = []
     for name in case["scorers"]:
-        scorer = SCORERS[name]
+        scorer = scorers[name]
         results.append(scorer(completion.text, case))
 
     # 4. store them for the run-level score - no assert on quality here

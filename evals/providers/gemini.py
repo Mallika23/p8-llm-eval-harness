@@ -1,8 +1,9 @@
 import os
 import time
+import httpx
 from dotenv import load_dotenv
 from google import genai
-from google.genai import errors
+from google.genai import errors, types
 from evals.providers.base import ProviderError,Provider,Completion
 
 # Load environment variables from .env
@@ -12,7 +13,7 @@ class GeminiProvider(Provider):
    
     name = "gemini"
 
-    def __init__(self, model="gemini-3.5-flash-lite", max_attempts=3, wait_s=10):
+    def __init__(self, model="gemini-3.5-flash-lite", max_attempts=3, wait_s=10, timeout_s=300):
         """
         Initializes the Gemini Client.
         The SDK automatically checks os.environ["GEMINI_API_KEY"]
@@ -22,7 +23,10 @@ class GeminiProvider(Provider):
         if not os.environ.get("GEMINI_API_KEY"):
             raise ProviderError("Gemini api key not set in .env")
 
-        self.client = genai.Client()
+        # without a timeout a hung request waits forever (one hung for 7 hours on 19 Nov 2026).
+        # The SDK takes the timeout in milliseconds.
+        self.client = genai.Client(http_options=types.HttpOptions(timeout=timeout_s * 1000))
+        self.timeout_s = timeout_s
         self.model = model
         self.max_attempts = max_attempts
         self.wait_s = wait_s
@@ -48,6 +52,16 @@ class GeminiProvider(Provider):
                     raise ProviderError(
                         f"Gemini error (Status {e.code}): {e.message} - attempt {attempt}/{self.max_attempts}"
                     ) from e
+            except httpx.TimeoutException as e:
+                # no reply within timeout_s: temporary, same treatment as a 503
+                if attempt < self.max_attempts:
+                    wait = self.wait_s * 2 ** (attempt -1)
+                    print(f"Gemini timed out after {self.timeout_s}s, retrying in {wait}s (attempt {attempt}/{self.max_attempts})")
+                    time.sleep(wait)
+                    continue
+                raise ProviderError(
+                    f"Gemini timed out after {self.timeout_s}s - attempt {attempt}/{self.max_attempts}"
+                ) from e
             except errors.APIError as e:
                 # Catch-all fallback for generic API communication issues
                 raise ProviderError(f"Unexpected API error occur: {e}") from e

@@ -18,7 +18,7 @@ cases:
       category: billing
       priority: high
       needs_human: true
-    scorers: [json_schema_valid, exact_field_match, allowed_values, no_refusal]
+    scorers: [json_schema_valid, exact_field_match, allowed_values, no_refusal, summary_faithfulness]
 
   - id: case_02
     input: |
@@ -27,7 +27,7 @@ cases:
       category: account
       priority: low
       needs_human: false
-    scorers: [json_schema_valid, exact_field_match, allowed_values, no_refusal]
+    scorers: [json_schema_valid, exact_field_match, allowed_values, no_refusal, summary_faithfulness]
 
   - id: case_03
     input: |
@@ -38,7 +38,7 @@ cases:
       category: technical
       priority: medium
       needs_human: true
-    scorers: [json_schema_valid, exact_field_match, allowed_values, no_refusal]
+    scorers: [json_schema_valid, exact_field_match, allowed_values, no_refusal, summary_faithfulness]
 
   - id: case_04
     input: |
@@ -50,7 +50,7 @@ cases:
       category: billing
       priority: high
       needs_human: true
-    scorers: [json_schema_valid, exact_field_match, allowed_values, no_refusal]
+    scorers: [json_schema_valid, exact_field_match, allowed_values, no_refusal, summary_faithfulness]
 
   - id: case_05
     input: |
@@ -59,7 +59,7 @@ cases:
       category: other
       priority: medium
       needs_human: true
-    scorers: [json_schema_valid, exact_field_match, allowed_values, no_refusal]
+    scorers: [json_schema_valid, exact_field_match, allowed_values, no_refusal, summary_faithfulness]
 
   - id: case_06
     input: |
@@ -72,7 +72,7 @@ cases:
       category: billing
       priority: medium
       needs_human: true
-    scorers: [json_schema_valid, exact_field_match, allowed_values, no_refusal]
+    scorers: [json_schema_valid, exact_field_match, allowed_values, no_refusal, summary_faithfulness]
 
   - id: case_07
     input: |
@@ -84,7 +84,7 @@ cases:
       category: billing
       priority: high
       needs_human: true
-    scorers: [json_schema_valid, exact_field_match, allowed_values, no_refusal]
+    scorers: [json_schema_valid, exact_field_match, allowed_values, no_refusal, summary_faithfulness]
 
   - id: case_08
     input: |
@@ -94,4 +94,4 @@ cases:
       category: other
       priority: low
       needs_human: false
-    scorers: [json_schema_valid, exact_field_match, allowed_values, no_refusal]
+    scorers: [json_schema_valid, exact_field_match, allowed_values, no_refusal, summary_faithfulness]

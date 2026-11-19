@@ -3,12 +3,18 @@ from evals.providers.mock import MockProvider
 
 
 def pytest_addoption(parser):
-    """Register the --record"""
+    """Register the --record and --record-judge flags"""
     parser.addoption(
         "--record",
         action="store_true",
         default=False,
         help="Call the live model and save replies to fixtures/"
+    )
+    parser.addoption(
+        "--record-judge",
+        action="store_true",
+        default=False,
+        help="Re-record only the judge's replies; replay the saved model answers"
     )
 
 @pytest.fixture(scope="session")
@@ -19,6 +25,23 @@ def provider(request):
             return RecordingProvider(GeminiProvider())
         else:
              return MockProvider()
+
+
+@pytest.fixture(scope="session")
+def judge_provider(request):
+    """The judge's model, recorded/replayed separately in fixtures/judge/.
+
+    flags given        model answers      judge replies
+    (none)             replay             replay
+    --record           live + save        live + save
+    --record-judge     replay             live + save
+    """
+    if request.config.getoption("--record") or request.config.getoption("--record-judge"):
+        from evals.providers.gemini import GeminiProvider
+        from evals.providers.recording import RecordingProvider
+        from evals.scorers.judge import JUDGE_MODEL
+        return RecordingProvider(GeminiProvider(model=JUDGE_MODEL), fixture_dir="fixtures/judge")
+    return MockProvider("fixtures/judge")
 
 
 @pytest.fixture(scope="session")
